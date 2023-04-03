@@ -1,11 +1,12 @@
-import './App.css'
+import {RouterProvider} from 'react-router-dom'
+import router from './Router/router'
 import {Reset} from 'styled-reset'
 
 function App() {
   return (
     <>
       <Reset />
-      <div className="App"></div>
+      <RouterProvider router={router} />
     </>
   )
 }
