@@ -26,3 +26,17 @@ export const get_todos = async () => {
   })
   return get_todos_res.data
 }
+
+export const update_todo = async todo => {
+  const update_todo_res = await axios.put(
+    `${BASE_URL}/todos/${todo.id}`,
+    {todo: todo.todo, isCompleted: todo.isCompleted},
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${access_token}`
+      }
+    }
+  )
+  return update_todo_res.data
+}
