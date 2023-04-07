@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {signup, signin} from '../api/signAPI'
+import {sign_up, sign_in} from '../api/signAPI'
 
 const Sign = ({type}) => {
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const Sign = ({type}) => {
 
   const SignupHandler = async e => {
     e.preventDefault()
-    const signupResult = await signup({
+    const signupResult = await sign_up({
       email,
       password
     })
@@ -46,7 +46,7 @@ const Sign = ({type}) => {
 
   const SigninHandler = async e => {
     e.preventDefault()
-    const signinResult = await signin({
+    const signinResult = await sign_in({
       email,
       password
     })
