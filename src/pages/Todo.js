@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import {create_todo, get_todos, update_todo} from '../api/todoAPI'
+import {create_todo, get_todos, update_todo, delete_todo} from '../api/todoAPI'
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([])
@@ -19,6 +19,12 @@ const Todo = () => {
     setInputTodo('')
   }
 
+  const deleteTodo = id => {
+    delete_todo(id)
+      .then(() => setTodoList(prev => prev.filter(todo => todo.id !== id)))
+      .catch(err => console.error(err))
+  }
+
   const handleChangeInputTodo = e => {
     setInputTodo(e.target.value)
   }
@@ -26,7 +32,6 @@ const Todo = () => {
   const handleChecked = async id => {
     const updateTodo = todoList.find(todo => todo.id === id)
     updateTodo.isCompleted = !updateTodo.isCompleted
-    console.log(updateTodo)
     await update_todo(updateTodo)
     const updateTodoList = await get_todos()
 
@@ -58,7 +63,9 @@ const Todo = () => {
               <span>{todo.todo}</span>
             </label>
             <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button">삭제</button>
+            <button data-testid="delete-button" onClick={() => deleteTodo(todo.id)}>
+              삭제
+            </button>
           </li>
         </div>
       ))}
