@@ -5,7 +5,7 @@ import {getTokenToLocalStorage} from '../utils/tokenHandler'
 const access_token = getTokenToLocalStorage('access_token')
 
 export const create_todo = async todo => {
-  const create_todoRes = await axios.post(
+  const create_todo_res = await axios.post(
     `${BASE_URL}/todos`,
     {todo},
     {
@@ -15,5 +15,14 @@ export const create_todo = async todo => {
       }
     }
   )
-  return create_todoRes.data
+  return create_todo_res.data
+}
+
+export const get_todos = async () => {
+  const get_todos_res = await axios.get(`${BASE_URL}/todos`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+  return get_todos_res.data
 }
