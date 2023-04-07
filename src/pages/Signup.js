@@ -1,8 +1,10 @@
 import React from 'react'
 import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {signup} from '../api/signup'
 
 const Signup = () => {
+  const navigate = useNavigate()
   const isUser = false
   // const [userInfo, setUserInfo] = useState(null)
 
@@ -39,7 +41,9 @@ const Signup = () => {
       email,
       password
     })
-    console.log(signupResult)
+    if (signupResult.status === 201) {
+      navigate('/signin')
+    }
   }
 
   const SigninHandler = () => {}
