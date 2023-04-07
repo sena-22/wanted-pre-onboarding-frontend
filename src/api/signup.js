@@ -6,7 +6,7 @@ export const signup = async args => {
     `${BASE_URL}/auth/signup`,
     {email: args.email, password: args.password},
     {
-      Headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json'}
     }
   )
   return signupRes
