@@ -38,5 +38,14 @@ export const update_todo = async todo => {
       }
     }
   )
-  return update_todo_res.data
+  return update_todo_res
+}
+
+export const delete_todo = async id => {
+  const delete_todo_res = await axios.delete(`${BASE_URL}/todos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+  return delete_todo_res.data
 }
