@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {signup} from '../api/signAPI'
+import {signup, signin} from '../api/signAPI'
 
 const Sign = ({type}) => {
   const navigate = useNavigate()
@@ -44,7 +44,14 @@ const Sign = ({type}) => {
     }
   }
 
-  const SigninHandler = () => {}
+  const SigninHandler = async e => {
+    e.preventDefault()
+    const signinResult = await signin({
+      email,
+      password
+    })
+    if (signinResult === 'success') navigate('/todo')
+  }
 
   return (
     <div>
