@@ -1,21 +1,38 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+
+import TodoItem from '../components/TodoItem'
 import {create_todo, get_todos, update_todo, delete_todo} from '../api/todoAPI'
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([])
   const [inputTodo, setInputTodo] = useState('')
+  const [isEditMode, setIsEditMode] = useState([])
+
+  const handleEditMode = id => {
+    setIsEditMode(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }))
+  }
 
   useEffect(() => {
     get_todos()
-      .then(todos => setTodoList(todos))
+      .then(todos => {
+        const editObj = {}
+        todos.forEach(todo => {
+          editObj[todo.id] = false
+        })
+        setTodoList(todos)
+        setIsEditMode(editObj)
+      })
       .catch(err => console.error(err))
   }, [])
 
   const createTodo = async e => {
     e.preventDefault()
     const newTodo = await create_todo(inputTodo)
-    setTodoList(prev => [...prev, newTodo])
+    setTodoList(prev => [...prev, {...newTodo, editMode: false}])
     setInputTodo('')
   }
 
@@ -38,6 +55,16 @@ const Todo = () => {
     setTodoList(updateTodoList)
   }
 
+  const updateTodo = async (id, todo) => {
+    const updateTodo = todoList.find(todo => todo.id === id)
+    updateTodo.todo = todo
+    await update_todo(updateTodo)
+    const updateTodoList = await get_todos()
+
+    setTodoList(updateTodoList)
+    handleEditMode(updateTodo.id)
+  }
+
   return (
     <>
       {/* 추가 */}
@@ -52,22 +79,14 @@ const Todo = () => {
       </button>
       {/* 조회.수정.삭제 */}
       {todoList.map(todo => (
-        <div key={todo.id}>
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => handleChecked(todo.id)}
-              />
-              <span>{todo.todo}</span>
-            </label>
-            <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button" onClick={() => deleteTodo(todo.id)}>
-              삭제
-            </button>
-          </li>
-        </div>
+        <TodoItem
+          todo={todo}
+          handleChecked={handleChecked}
+          isEditMode={isEditMode}
+          handleEditMode={handleEditMode}
+          deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
+        />
       ))}
     </>
   )
