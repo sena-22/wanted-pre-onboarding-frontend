@@ -1,12 +1,10 @@
 import React from 'react'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {signup} from '../api/signup'
+import {signup} from '../api/signAPI'
 
-const Signup = () => {
+const Sign = ({type}) => {
   const navigate = useNavigate()
-  const isUser = false
-  // const [userInfo, setUserInfo] = useState(null)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -50,7 +48,7 @@ const Signup = () => {
 
   return (
     <div>
-      <form onSubmit={isUser ? SigninHandler : SignupHandler}>
+      <form onSubmit={type === 'signin' ? SigninHandler : SignupHandler}>
         <input
           value={email}
           data-testid="email-input"
@@ -65,7 +63,7 @@ const Signup = () => {
           name="password"
           onChange={handlePassword}
         />
-        {isUser ? (
+        {type === 'signin' ? (
           <button
             data-testid="signin-button"
             type="submit"
@@ -85,4 +83,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Sign

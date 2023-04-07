@@ -11,17 +11,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <P.Signin />,
+        element: <P.Sign type="signin" />,
         loader: SigninLoader
       },
       {
         path: 'signin',
-        element: <P.Signin />,
+        element: <P.Sign type="signin" />,
         loader: SigninLoader
       },
       {
         path: 'signup',
-        element: <P.Signup />,
+        element: <P.Sign type="signup" />,
         loader: SigninLoader
       }
     ]

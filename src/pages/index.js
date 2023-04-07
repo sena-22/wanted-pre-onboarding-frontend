@@ -1,3 +1,2 @@
-export {default as Signin} from './Signin'
-export {default as Signup} from './Signup'
+export {default as Sign} from './Sign'
 export {default as Todo} from './Todo'
