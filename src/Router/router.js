@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <P.Sign type="signin" />,
+        element: <P.Sign type="signup" />,
         loader: SigninLoader
       },
       {
