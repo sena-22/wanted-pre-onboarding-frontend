@@ -67,7 +67,7 @@ const Todo = () => {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen font-mono text-zinc-100">
-      <div className="flex flex-col items-center w-2/6 bg-lime-900 rounded-xl h-5/6">
+      <div className="flex flex-col items-center bg-lime-900 rounded-xl h-5/6">
         <h1 className="mt-10 text-3xl text-orange-500">Todo List</h1>
         {/* 추가 */}
         <div className="flex w-4/6 h-10 mt-10 mb-5">
