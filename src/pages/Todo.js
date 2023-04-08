@@ -66,30 +66,39 @@ const Todo = () => {
   }
 
   return (
-    <>
-      {/* 추가 */}
-      <input
-        data-testid="new-todo-input"
-        type="text"
-        onChange={handleChangeInputTodo}
-        value={inputTodo}
-      />
-      <button data-testid="new-todo-add-button" onClick={createTodo}>
-        추가
-      </button>
-      {/* 조회.수정.삭제 */}
-      {todoList.map(todo => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          handleChecked={handleChecked}
-          isEditMode={isEditMode}
-          handleEditMode={handleEditMode}
-          deleteTodo={deleteTodo}
-          updateTodo={updateTodo}
-        />
-      ))}
-    </>
+    <div className="flex items-center justify-center w-screen h-screen font-mono text-zinc-100">
+      <div className="flex flex-col items-center w-2/6 bg-lime-900 rounded-xl h-5/6">
+        <h1 className="mt-10 text-3xl text-orange-500">Todo List</h1>
+        {/* 추가 */}
+        <div className="flex w-4/6 h-10 mt-10 mb-5">
+          <input
+            data-testid="new-todo-input"
+            type="text"
+            onChange={handleChangeInputTodo}
+            value={inputTodo}
+            className="w-5/6 px-3 py-3 mr-5 text-orange-900 rounded"
+          />
+          <button
+            data-testid="new-todo-add-button"
+            onClick={createTodo}
+            className="w-32 bg-orange-400 rounded ">
+            create
+          </button>
+        </div>
+        {/* 조회.수정.삭제 */}
+        {todoList.map(todo => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            handleChecked={handleChecked}
+            isEditMode={isEditMode}
+            handleEditMode={handleEditMode}
+            deleteTodo={deleteTodo}
+            updateTodo={updateTodo}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 

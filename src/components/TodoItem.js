@@ -21,15 +21,16 @@ const TodoItem = ({
   }
 
   return (
-    <div>
+    <div className="flex justify-between w-4/6 h-10 mt-4 text-base ">
       <li>
         <label>
           <input
             type="checkbox"
             checked={todo.isCompleted}
             onChange={() => handleChecked(todo.id)}
+            className="mr-2"
           />
-          <span>{todo.todo}</span>
+          <span className="mr-2">{todo.todo}</span>
         </label>
         {isEditMode[todo.id] ? (
           <>
@@ -37,25 +38,30 @@ const TodoItem = ({
               data-testid="modify-input"
               value={editTodo}
               onChange={handleChangeEditTodo}
+              className="w-2/6 max-w-xs px-1 py-1 mr-2 text-orange-900 rounded "
             />
             <button
               data-testid="submit-button"
-              onClick={() => updateTodo(todo.id, editTodo)}>
-              제출
+              onClick={() => updateTodo(todo.id, editTodo)}
+              className="mr-2">
+              edit
             </button>
             <button
               data-testid="cancel-button"
               onClick={() => handleCancleEditMode(todo.id)}>
-              취소
+              cancel
             </button>
           </>
         ) : (
           <>
-            <button data-testid="modify-button" onClick={() => handleEditMode(todo.id)}>
-              수정
+            <button
+              data-testid="modify-button"
+              onClick={() => handleEditMode(todo.id)}
+              className="mr-2">
+              edit
             </button>
             <button data-testid="delete-button" onClick={() => deleteTodo(todo.id)}>
-              삭제
+              delete
             </button>
           </>
         )}
