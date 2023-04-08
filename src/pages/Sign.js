@@ -55,7 +55,7 @@ const Sign = ({type}) => {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen font-mono text-zinc-100">
-      <div className="flex items-center justify-center bg-lime-900 rounded-xl h-3/6">
+      <div className="flex items-center justify-center w-96 bg-lime-900 rounded-xl h-3/6">
         <form
           onSubmit={type === 'signin' ? SigninHandler : SignupHandler}
           className="flex flex-col items-center justify-center w-4/6 h-3/5">
