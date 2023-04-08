@@ -70,6 +70,7 @@ const Sign = ({type}) => {
           />
           <label className="mb-3">password</label>
           <input
+            type="password"
             value={password}
             data-testid="password-input"
             placeholder="password"
