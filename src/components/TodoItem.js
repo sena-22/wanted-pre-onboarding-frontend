@@ -15,6 +15,11 @@ const TodoItem = ({
     setEditTodo(e.target.value)
   }
 
+  const handleCancleEditMode = id => {
+    handleEditMode(todo.id)
+    setEditTodo(todo.todo)
+  }
+
   return (
     <div key={todo.id}>
       <li>
@@ -38,7 +43,9 @@ const TodoItem = ({
               onClick={() => updateTodo(todo.id, editTodo)}>
               제출
             </button>
-            <button data-testid="cancel-button" onClick={() => handleEditMode(todo.id)}>
+            <button
+              data-testid="cancel-button"
+              onClick={() => handleCancleEditMode(todo.id)}>
               취소
             </button>
           </>
