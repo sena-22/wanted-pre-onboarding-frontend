@@ -1,10 +1,12 @@
-// tailwind.config.js 📂
-
 module.exports = {
-  // 템플릿 파일의 경로 설정 👀
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  mode: 'jit',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {}
   },
-  plugins: [require('@tailwindcss/line-clamp'), require('daisyui')]
+  variants: {
+    extend: {}
+  },
+  plugins: []
 }
