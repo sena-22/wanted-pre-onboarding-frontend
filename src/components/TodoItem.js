@@ -21,7 +21,7 @@ const TodoItem = ({
   }
 
   return (
-    <div key={todo.id}>
+    <div>
       <li>
         <label>
           <input

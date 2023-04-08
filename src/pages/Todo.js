@@ -80,6 +80,7 @@ const Todo = () => {
       {/* 조회.수정.삭제 */}
       {todoList.map(todo => (
         <TodoItem
+          key={todo.id}
           todo={todo}
           handleChecked={handleChecked}
           isEditMode={isEditMode}
