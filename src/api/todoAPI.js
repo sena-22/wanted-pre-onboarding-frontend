@@ -2,9 +2,8 @@ import axios from 'axios'
 import {BASE_URL} from './const'
 import {getTokenToLocalStorage} from '../utils/tokenHandler'
 
-const access_token = getTokenToLocalStorage('access_token')
-
 export const create_todo = async todo => {
+  const access_token = getTokenToLocalStorage('access_token')
   const create_todo_res = await axios.post(
     `${BASE_URL}/todos`,
     {todo},
@@ -29,6 +28,7 @@ export const get_todos = async () => {
 }
 
 export const update_todo = async todo => {
+  const access_token = getTokenToLocalStorage('access_token')
   const update_todo_res = await axios.put(
     `${BASE_URL}/todos/${todo.id}`,
     {todo: todo.todo, isCompleted: todo.isCompleted},
@@ -43,6 +43,7 @@ export const update_todo = async todo => {
 }
 
 export const delete_todo = async id => {
+  const access_token = getTokenToLocalStorage('access_token')
   const delete_todo_res = await axios.delete(`${BASE_URL}/todos/${id}`, {
     headers: {
       Authorization: `Bearer ${access_token}`
