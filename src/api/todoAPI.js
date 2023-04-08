@@ -19,6 +19,7 @@ export const create_todo = async todo => {
 }
 
 export const get_todos = async () => {
+  const access_token = getTokenToLocalStorage('access_token')
   const get_todos_res = await axios.get(`${BASE_URL}/todos`, {
     headers: {
       Authorization: `Bearer ${access_token}`
